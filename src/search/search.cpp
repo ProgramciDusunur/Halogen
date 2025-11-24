@@ -1151,7 +1151,7 @@ Score search(GameState& position, SearchStackState* ss, NN::Accumulator* acc, Se
         local.net.store_lazy_updates(position.prev_board(), position.board(), *(acc + 1), move);
 
         // Step 19: Late move reductions
-        int r = late_move_reduction<pv_node>(depth, seen_moves, history, cut_node, improving, is_loud_move, tt_move);
+        int r = late_move_reduction<pv_node>(depth, seen_moves, history, cut_node, improving, is_loud_move, move == tt_move);
         Score search_score = search_move<pv_node>(
             position, ss, acc, local, shared, depth, extensions, r, alpha, beta, seen_moves, cut_node, score);
 
