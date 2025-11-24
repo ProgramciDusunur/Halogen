@@ -585,7 +585,7 @@ std::optional<Score> singular_extensions(GameState& position, SearchStackState* 
 }
 
 template <bool pv_node>
-int late_move_reduction(int depth, int seen_moves, int history, bool cut_node, bool improving, bool loud)
+int late_move_reduction(int depth, int seen_moves, int history, bool cut_node, bool improving, bool loud, bool tt_move)
 {
     if (seen_moves == 1)
     {
@@ -601,7 +601,7 @@ int late_move_reduction(int depth, int seen_moves, int history, bool cut_node, b
 
     if (cut_node)
     {
-        r += lmr_cut;
+        r += lmr_cut + !tt_move * lmr_cut_no_tt_move;
     }
 
     if (improving)
@@ -1151,7 +1151,7 @@ Score search(GameState& position, SearchStackState* ss, NN::Accumulator* acc, Se
         local.net.store_lazy_updates(position.prev_board(), position.board(), *(acc + 1), move);
 
         // Step 19: Late move reductions
-        int r = late_move_reduction<pv_node>(depth, seen_moves, history, cut_node, improving, is_loud_move);
+        int r = late_move_reduction<pv_node>(depth, seen_moves, history, cut_node, improving, is_loud_move, tt_move);
         Score search_score = search_move<pv_node>(
             position, ss, acc, local, shared, depth, extensions, r, alpha, beta, seen_moves, cut_node, score);
 
