@@ -602,7 +602,6 @@ int late_move_reduction(int depth, int seen_moves, int history, bool cut_node, b
     if (cut_node)
     {
         r += lmr_cut + !tt_move * lmr_cut_no_tt_move;
-        
     }
 
     if (improving)
