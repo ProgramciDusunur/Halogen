@@ -65,7 +65,7 @@ TUNEABLE_CONSTANT int se_tt_depth = 5;
 
 TUNEABLE_CONSTANT auto lmr_pv = Fraction<LMR_SCALE>::from_raw(1429);
 TUNEABLE_CONSTANT auto lmr_cut = Fraction<LMR_SCALE>::from_raw(1820);
-TUNEABLE_CONSTANT auto lmr_cut_no_tt_move = Fraction<LMR_SCALE>::from_raw(1024);
+TUNEABLE_CONSTANT auto lmr_cut_no_tt_move = Fraction<LMR_SCALE>::from_raw(512);
 TUNEABLE_CONSTANT auto lmr_improving = Fraction<LMR_SCALE>::from_raw(807);
 TUNEABLE_CONSTANT auto lmr_loud = Fraction<LMR_SCALE>::from_raw(716);
 TUNEABLE_CONSTANT auto lmr_h = Fraction<16777216>::from_raw(2276);
