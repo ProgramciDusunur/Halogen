@@ -58,7 +58,6 @@ TUNEABLE_CONSTANT int iid_no_tt_depth = 1;
 TUNEABLE_CONSTANT int iid_no_move_depth = 6;
 
 TUNEABLE_CONSTANT auto se_sbeta_depth = Fraction<64>::from_raw(52);
-TUNEABLE_CONSTANT auto se_sbeta_divisor = Fraction<64>::from_raw(60);
 TUNEABLE_CONSTANT int se_double = 0;
 TUNEABLE_CONSTANT int se_triple = 31;
 TUNEABLE_CONSTANT int se_min_depth = 6;
