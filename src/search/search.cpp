@@ -536,7 +536,7 @@ std::optional<Score> singular_extensions(GameState& position, SearchStackState* 
     SearchLocalState& local, SearchSharedState& shared, int depth, const Score tt_score, const Move tt_move,
     const Score beta, int& extensions, bool cut_node)
 {
-    Score sbeta = tt_score - (se_sbeta_depth * depth / 60).to_int();
+    Score sbeta = tt_score - (se_sbeta_depth * depth).to_int() / 64;
     int sdepth = depth / 2;
 
     ss->singular_exclusion = tt_move;
