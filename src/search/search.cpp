@@ -1087,7 +1087,8 @@ Score search(GameState& position, SearchStackState* ss, NN::Accumulator* acc, Se
         //
         // Prune quiet moves if we are significantly below alpha. TODO: this implementation is a little strange
         if (!root_node && !InCheck && depth < fp_max_d
-            && eval + (fp_const + fp_depth * depth + fp_quad * depth * depth + *local.threat_hist.get(position.board(), ss, move) / 32).to_int() < alpha && !score.is_loss())
+            
+            && eval + (fp_const + fp_depth * depth + fp_quad * depth * depth + *local.threat_hist.get(position.board(), ss, move) / 64).to_int() < alpha && !score.is_loss())
         {
             gen.skip_quiets();
             if (gen.get_stage() >= Stage::GIVE_BAD_LOUD)
