@@ -534,7 +534,7 @@ std::optional<Score> null_move_pruning(GameState& position, SearchStackState* ss
 template <bool pv_node>
 std::optional<Score> singular_extensions(GameState& position, SearchStackState* ss, NN::Accumulator* acc,
     SearchLocalState& local, SearchSharedState& shared, int depth, const Score tt_score, const Move tt_move,
-    const Score beta, int& extensions, bool cut_node)
+    const Score beta, int& extensions, bool cut_node, bool is_loud_move)
 {
     Score sbeta = tt_score - (se_sbeta_depth * depth).to_int();
     int sdepth = depth / 2;
@@ -543,14 +543,15 @@ std::optional<Score> singular_extensions(GameState& position, SearchStackState* 
 
     auto se_score = search<SearchType::ZW>(position, ss, acc, local, shared, sdepth, sbeta - 1, sbeta, cut_node);
 
-    ss->singular_exclusion = Move::Uninitialized;
+    ss->singular_exclusion = Move::Uninitialized;    
 
     // If the TT move is singular, we extend the search by one or more plies depending on how singular it appears
+    int double_margin = se_double - (*local.threat_hist.get(position.board(), ss, move) / 384) * !is_loud_move);
     if (se_score < sbeta - se_triple && !pv_node)
     {
         extensions += 3;
     }
-    else if (se_score < sbeta - se_double && !pv_node)
+    else if (se_score < sbeta - double_margin && !pv_node)
     {
         extensions += 2;
     }
