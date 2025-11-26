@@ -543,7 +543,9 @@ std::optional<Score> singular_extensions(GameState& position, SearchStackState* 
 
     auto se_score = search<SearchType::ZW>(position, ss, acc, local, shared, sdepth, sbeta - 1, sbeta, cut_node);
 
-    ss->singular_exclusion = Move::Uninitialized;    
+    ss->singular_exclusion = Move::Uninitialized;
+
+    std::cout << "History score: " << (*local.threat_hist.get(position.board(), ss, tt_move) / 512 * !is_loud_move) << std::endl;
 
     // If the TT move is singular, we extend the search by one or more plies depending on how singular it appears
     int double_margin = se_double - (*local.threat_hist.get(position.board(), ss, tt_move) / 512 * !is_loud_move);
