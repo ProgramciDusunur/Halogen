@@ -142,6 +142,7 @@ TUNEABLE_CONSTANT int qsearch_lmp = 2;
 TUNEABLE_CONSTANT int qsearch_see_hist = 163;
 
 TUNEABLE_CONSTANT int probcut_beta = 214;
+TUNEABLE_CONSTANT int probcut_improving = 30;
 TUNEABLE_CONSTANT int probcut_min_depth = 3;
 TUNEABLE_CONSTANT int probcut_depth_const = 5;
 
