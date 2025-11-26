@@ -1134,7 +1134,7 @@ Score search(GameState& position, SearchStackState* ss, NN::Accumulator* acc, Se
             && tt_score != SCORE_UNDEFINED)
         {
             if (auto value = singular_extensions<pv_node>(
-                    position, ss, acc, local, shared, depth, tt_score, tt_move, beta, extensions, cut_node))
+                    position, ss, acc, local, shared, depth, tt_score, tt_move, beta, extensions, cut_node, is_loud_move))
             {
                 return *value;
             }
