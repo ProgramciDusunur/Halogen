@@ -546,7 +546,7 @@ std::optional<Score> singular_extensions(GameState& position, SearchStackState* 
     ss->singular_exclusion = Move::Uninitialized;    
 
     // If the TT move is singular, we extend the search by one or more plies depending on how singular it appears
-    int double_margin = se_double - (*local.threat_hist.get(position.board(), ss, move) / 384) * !is_loud_move);
+    int double_margin = se_double - (*local.threat_hist.get(position.board(), ss, tt_move) / 384) * !is_loud_move);
     if (se_score < sbeta - se_triple && !pv_node)
     {
         extensions += 3;
