@@ -383,6 +383,7 @@ auto Uci::options_handler()
         tuneable_int(qsearch_see_hist, 100, 200),
 
         tuneable_int(probcut_beta, 150, 250),
+        tuneable_int(probcut_improving, 30, 200),
         tuneable_int(probcut_min_depth, 1, 5),
         tuneable_int(probcut_depth_const, 3, 7),
 
